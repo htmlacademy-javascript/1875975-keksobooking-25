@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Валентина Храмцова](https://up.htmlacademy.ru/javascript/25/user/1875975).
-* Наставник: `Неизвестно`.
+* Наставник: [Владислав Доровлев](https://htmlacademy.ru/profile/dorovlev).
 
 ---
 
