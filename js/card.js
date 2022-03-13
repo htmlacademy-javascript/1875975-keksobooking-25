@@ -3,12 +3,12 @@ import {createAds} from './data.js';
 const mapCanvas = document.querySelector('#map-canvas');
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 const cardList = [];
-const TYPES_CARD = {
-  'palace': 'Дворец',
-  'flat': 'Квартира',
-  'house': 'Дом',
-  'bungalow': 'Бунгало',
-  'hotel': 'Отель',
+const TypesCard = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+  hotel: 'Отель',
 };
 
 const createPopup = (source) => {
@@ -19,7 +19,7 @@ const createPopup = (source) => {
   cardElement.querySelector('.popup__title').textContent = title;
   cardElement.querySelector('.popup__text--address').textContent = addres;
   cardElement.querySelector('.popup__text--price').textContent = `${price} ₽/ночь`;
-  cardElement.querySelector('.popup__type').textContent = TYPES_CARD[type];
+  cardElement.querySelector('.popup__type').textContent = TypesCard[type];
   cardElement.querySelector('.popup__text--capacity').textContent = `${rooms} комнаты для ${guests} гостей`;
   cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${checkin}, выезд до ${checkout}`;
 
