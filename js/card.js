@@ -1,6 +1,5 @@
 import {createAds} from './data.js';
 
-const mapCanvas = document.querySelector('#map-canvas');
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 const cardList = [];
 const TypesCard = {
@@ -64,9 +63,4 @@ similarCards.forEach((ad) => {
   const newPopup = createPopup(ad);
   cardList.push(newPopup);
 });
-mapCanvas.append(cardList[0]);
-
-// const similarCards = createAds();
-// mapCanvas.append(createPopup(similarCards[0]));
-
-
+export {createPopup};
