@@ -7,14 +7,6 @@ const getDisableForm = () => {
   adForm.classList.add('.ad-form--disabled');
   mapForm.classList.add('.ad-form--disabled');
 
-  // for (let i = 0; i < adFormFieldset.length; i++ ) {
-  //   adFormFieldset[i].disabled = true;
-  // }
-
-  // for (let i = 0; i < mapFilters.length; i++ ) {
-  //   mapFilters[i].disabled = true;
-  // }
-
   adFormFieldset.forEach((fieldset) => {
     fieldset.disabled = true;
   });
@@ -27,14 +19,6 @@ const getDisableForm = () => {
 const getActiveForm = () => {
   adForm.classList.remove('.ad-form--disabled');
   mapForm.classList.remove('.ad-form--disabled');
-
-  // for (let i = 0; i < adFormFieldset.length; i++ ) {
-  //   adFormFieldset[i].disabled = false;
-  // }
-
-  // for (let i = 0; i < mapFilters.length; i++ ) {
-  //   mapFilters[i].disabled = false;
-  // }
 
   adFormFieldset.forEach((fieldset) => {
     fieldset.disabled = false;
