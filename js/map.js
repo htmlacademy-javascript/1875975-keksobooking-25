@@ -1,6 +1,8 @@
 import {getDisableForm, getActiveForm} from './form-state.js';
-import {createAds} from './data.js';
 import {createPopup} from './card.js';
+
+const SIMILAR_AD_COUNT = 10;
+const ZOOM = 13;
 
 const MAP_CENTER = {
   lat: 35.65283,
@@ -15,7 +17,7 @@ const map = L.map('map-canvas')
   .on('load', () => {
     getActiveForm();
   })
-  .setView(MAP_CENTER, 13);
+  .setView(MAP_CENTER, ZOOM);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -54,8 +56,7 @@ mainPinMarker.on('moveend', (evt) => {
 
 const markerGroup = L.layerGroup().addTo(map);
 
-const similarAds = createAds();
-similarAds.forEach((ad) => {
+const createPin = (ad) => {
   const adPin = L.marker(
     {
       lat: ad.location.lat,
@@ -68,4 +69,18 @@ similarAds.forEach((ad) => {
   adPin
     .addTo(markerGroup)
     .bindPopup(createPopup(ad));
-});
+};
+
+const getSimilarAds = (array) => {
+  array.slice(0, SIMILAR_AD_COUNT).forEach(createPin);
+};
+
+const resetMap = () => {
+  mainPinMarker.setLatLng(MAP_CENTER);
+  address.value = `${MAP_CENTER.lat}, ${MAP_CENTER.lng}`;
+  map.setView(MAP_CENTER, ZOOM);
+  map.closePopup();
+};
+
+export {getSimilarAds, resetMap};
+

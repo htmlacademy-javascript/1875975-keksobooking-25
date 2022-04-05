@@ -1,7 +1,6 @@
 const form = document.querySelector('.ad-form');
 const title = form.querySelector('#title');
 const price = form.querySelector('#price');
-const priceSlider = form.querySelector('.ad-form__slider');
 const type = form.querySelector('#type');
 const time = form.querySelector('.ad-form__element--time');
 const checkIn = form.querySelector('#timein');
@@ -26,6 +25,8 @@ const ROOMS_OPTIONS = {
 
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
+  errorClass: 'form__item--invalid',
+  successClass: 'form__item--valid',
   errorTextParent: 'ad-form__element',
   errorTextTag: 'span',
   errorTextClass: 'ad-form__error-text',
@@ -53,43 +54,11 @@ pristine.addValidator (
 const onTypeChange = () => {
   price.placeholder = MIN_PRICE[type.value];
   price.min = MIN_PRICE[type.value];
-  priceSlider.noUiSlider.updateOptions ({
-    range: {
-      min: MIN_PRICE[type.value],
-      max: MAX_PRICE,
-    },
-    // start: MIN_PRICE[type.value],
-  });
   pristine.validate(price);
 };
 
 type.addEventListener('change', () => {
   onTypeChange();
-});
-
-//Слайдер
-
-noUiSlider.create(priceSlider, {
-  range: {
-    min: MIN_PRICE[type.value],
-    max: MAX_PRICE,
-  },
-  start: MIN_PRICE[type.value],
-  step: 50,
-  connect: 'lower',
-  format: {
-    to: (value) => value.toFixed(0),
-    from: (value) => parseFloat(value),
-  },
-});
-
-priceSlider.noUiSlider.on('slide', () => {
-  price.value = priceSlider.noUiSlider.get();
-  pristine.validate(price);
-});
-
-price.addEventListener('change', () => {
-  priceSlider.noUiSlider.set(price.value);
 });
 
 // Время заезда и выезда
@@ -123,14 +92,10 @@ rooms.addEventListener('change', () => {
   pristine.validate(guests);
 });
 
-pristine.addValidator(
+pristine.addValidator (
   guests,
   validateRoomsGuests,
-  getRoomsGuestsErrorMessage);
+  getRoomsGuestsErrorMessage
+);
 
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
-});
+export {pristine, price, type, MIN_PRICE, MAX_PRICE};
