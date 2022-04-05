@@ -31,7 +31,7 @@ const createPopup = (source) => {
         element.remove();
       }
     });
-};
+  };
 
   cardElement.querySelector('.popup__description').textContent = description;
 
