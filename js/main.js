@@ -1,11 +1,8 @@
-import {createAds} from './data.js';
-import './card.js';
-import {getDisableForm, getActiveForm} from './form-state.js';
 import './form-validator.js';
-import './map.js';
+import './slider.js';
+import {getSimilarAds} from './map.js';
+import {getData} from './api.js';
+import './form-send-reset.js';
 
-getDisableForm();
+getData(getSimilarAds);
 
-createAds();
-
-getActiveForm();

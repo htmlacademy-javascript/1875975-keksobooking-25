@@ -1,7 +1,6 @@
-import {createAds} from './data.js';
-
+// import {createAds} from './data.js';
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
-const cardList = [];
+// const cardList = [];
 const TypesCard = {
   palace: 'Дворец',
   flat: 'Квартира',
@@ -23,14 +22,16 @@ const createPopup = (source) => {
   cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${checkin}, выезд до ${checkout}`;
 
   const featuresList = cardElement.querySelectorAll('.popup__feature');
-  featuresList.forEach((element) => {
-    const isNecessary = features.some(
-      (feature) => element.classList.contains(`popup__feature--${feature}`),
-    );
-    if(!isNecessary) {
-      element.remove();
-    }
-  });
+  const createFeature = () => {
+    featuresList.forEach((element) => {
+      const isNecessary = features.some(
+        (feature) => element.classList.contains(`popup__feature--${feature}`),
+      );
+      if(!isNecessary) {
+        element.remove();
+      }
+    });
+  };
 
   cardElement.querySelector('.popup__description').textContent = description;
 
@@ -45,8 +46,8 @@ const createPopup = (source) => {
 
   cardElement.querySelector('.popup__avatar').src = source.author.avatar;
 
-  const checkContent = (value, element) => {
-    if (value.length === 0) {
+  const checkContent= (key, element) => {
+    if (typeof key === 'undefined') {
       element.hidden = true;
     }
   };
@@ -55,12 +56,18 @@ const createPopup = (source) => {
   checkContent(features, featuresList);
   checkContent(photos, photoList);
 
+  if (typeof features === 'undefined') {
+    featuresList.hidden = true;
+  } else {
+    createFeature();
+  }
+
   return cardElement;
 };
 
-const similarCards = createAds();
-similarCards.forEach((ad) => {
-  const newPopup = createPopup(ad);
-  cardList.push(newPopup);
-});
+// const similarCards = createAds();
+// similarCards.forEach((ad) => {
+//   const newPopup = createPopup(ad);
+//   cardList.push(newPopup);
+// });
 export {createPopup};

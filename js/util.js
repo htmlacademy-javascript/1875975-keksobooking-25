@@ -23,4 +23,30 @@ const getRandomArray = (source) => {
   return newArray;
 };
 
+// const showAlert = (message) => {
+//   const alertContainer = document.createElement('div');
+//   alertContainer.style.zIndex = 100;
+//   alertContainer.style.position = 'absolute';
+//   alertContainer.style.top = '52px';
+//   alertContainer.style.right = '50%';
+//   alertContainer.style.transform = 'translateX(50%)';
+//   alertContainer.style.width = '800px';
+//   alertContainer.style.padding = '12px';
+//   alertContainer.style.textAlign = 'center';
+//   alertContainer.style.fontSize = '16px';
+//   alertContainer.style.color = '#ffffff';
+//   alertContainer.style.textTransform = 'uppercase';
+//   alertContainer.style.borderRadius = '10px';
+//   alertContainer.style.backgroundColor = '#ff5635';
+
+//   alertContainer.textContent = message;
+
+//   document.body.append(alertContainer);
+
+//   setTimeout(() => {
+//     alertContainer.remove();
+//   }, 4000);
+// };
+
+
 export {getRandomInteger, getRandomNumberFloating, getRandomArrayElement, getRandomArray};
