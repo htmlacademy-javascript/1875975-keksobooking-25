@@ -1,6 +1,4 @@
-// import {createAds} from './data.js';
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
-// const cardList = [];
 const TypesCard = {
   palace: 'Дворец',
   flat: 'Квартира',
@@ -37,12 +35,14 @@ const createPopup = (source) => {
 
   const photoList = cardElement.querySelector('.popup__photos');
   const photoTemplate = photoList.querySelector('.popup__photo');
-  photos.forEach((photo) => {
-    const newPhoto = photoTemplate.cloneNode(true);
-    newPhoto.src = photo;
-    photoList.append(newPhoto);
-  });
-  photoTemplate.remove();
+  const createPhoto = () => {
+    photos.forEach((photo) => {
+      const newPhoto = photoTemplate.cloneNode(true);
+      newPhoto.src = photo;
+      photoList.append(newPhoto);
+    });
+    photoTemplate.remove();
+};
 
   cardElement.querySelector('.popup__avatar').src = source.author.avatar;
 
@@ -62,12 +62,13 @@ const createPopup = (source) => {
     createFeature();
   }
 
+  if (!photos) {
+    photoList.remove();
+  } else {
+    createPhoto();
+  }
+
   return cardElement;
 };
 
-// const similarCards = createAds();
-// similarCards.forEach((ad) => {
-//   const newPopup = createPopup(ad);
-//   cardList.push(newPopup);
-// });
 export {createPopup};
