@@ -33,22 +33,18 @@ const getSendMessages = (type) => {
   const message = messageTemplate.cloneNode(true);
   document.body.append(message);
 
-  const removeMessage = () => {
-    message.remove();
-    document.removeEventListener('keydown', onDocumentEscKeydown);
-    message.removeEventListener('click', onMessageClick);
-  };
-
-  function onDocumentEscKeydown(evt) {
+  const onDocumentEscKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
-      removeMessage();
+      message.remove();
+      document.removeEventListener('keydown', onDocumentEscKeydown);
     }
-  }
+  };
 
-  function onMessageClick() {
-    removeMessage();
-  }
+  const onMessageClick = () => {
+    message.remove();
+    document.removeEventListener('keydown', onDocumentEscKeydown);
+  };
 
   document.addEventListener('keydown', onDocumentEscKeydown);
   message.addEventListener('click', onMessageClick);
