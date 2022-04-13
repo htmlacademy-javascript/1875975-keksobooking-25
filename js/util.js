@@ -23,30 +23,26 @@ const getRandomArray = (source) => {
   return newArray;
 };
 
-// const showAlert = (message) => {
-//   const alertContainer = document.createElement('div');
-//   alertContainer.style.zIndex = 100;
-//   alertContainer.style.position = 'absolute';
-//   alertContainer.style.top = '52px';
-//   alertContainer.style.right = '50%';
-//   alertContainer.style.transform = 'translateX(50%)';
-//   alertContainer.style.width = '800px';
-//   alertContainer.style.padding = '12px';
-//   alertContainer.style.textAlign = 'center';
-//   alertContainer.style.fontSize = '16px';
-//   alertContainer.style.color = '#ffffff';
-//   alertContainer.style.textTransform = 'uppercase';
-//   alertContainer.style.borderRadius = '10px';
-//   alertContainer.style.backgroundColor = '#ff5635';
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
-//   alertContainer.textContent = message;
+// Функция взята из интернета и доработана
+// Источник - https://www.freecodecamp.org/news/javascript-debounce-example
+function debounce (callback, timeoutDelay = 500) {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId;
 
-//   document.body.append(alertContainer);
+  return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    clearTimeout(timeoutId);
 
-//   setTimeout(() => {
-//     alertContainer.remove();
-//   }, 4000);
-// };
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
 
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+  };
+}
 
-export {getRandomInteger, getRandomNumberFloating, getRandomArrayElement, getRandomArray};
+export {getRandomInteger, getRandomNumberFloating, getRandomArrayElement, getRandomArray, isEscapeKey, debounce};
