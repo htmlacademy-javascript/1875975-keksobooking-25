@@ -38,9 +38,10 @@ const filterPrice = (ad) => {
 };
 
 const filterFeatures = (ad) => {
-  const currentFeatures = [];
-  const featuresChekedInput = featuresControl.querySelectorAll('.map__checkbox:checked');
-  featuresChekedInput.forEach((element) => currentFeatures.push(element.value));
+  const currentFeatures = Array. from(featuresControl.querySelectorAll('.map__checkbox:checked'))
+    .map((element) => element.value);
+  // const featuresChekedInput = featuresControl.querySelectorAll('.map__checkbox:checked');
+  // featuresChekedInput.forEach((element) => currentFeatures.push(element.value));
 
   if (ad.offer.features) {
     return currentFeatures.every((feature) => ad.offer.features.includes(feature));

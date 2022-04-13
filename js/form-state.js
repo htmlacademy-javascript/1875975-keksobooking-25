@@ -1,3 +1,5 @@
+import {priceSlider} from './slider.js';
+
 const adForm = document.querySelector('.ad-form');
 const adFormFieldset = adForm.querySelectorAll('.ad-form__element');
 const mapForm = document.querySelector('.map__filters');
@@ -14,6 +16,7 @@ const getDisableForm = () => {
   mapFilters.forEach((filter) => {
     filter.disabled = true;
   });
+  priceSlider.setAttribute('disabled', true);
 };
 
 const getActiveForm = () => {
@@ -27,6 +30,7 @@ const getActiveForm = () => {
   mapFilters.forEach((filter) => {
     filter.disabled = false;
   });
+  priceSlider.removeAttribute('disabled', true);
 };
 
 export {getDisableForm, getActiveForm};
