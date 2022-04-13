@@ -110,6 +110,7 @@ const resetMap = () => {
   map.setView(MAP_CENTER, ZOOM);
   map.closePopup();
   getData((array) => getSimilarAds(array));
+  filters.reset();
 };
 
 export {getSimilarAds, resetMap};

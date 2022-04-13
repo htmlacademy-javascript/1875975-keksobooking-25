@@ -42,7 +42,7 @@ const createPopup = (source) => {
       photoList.append(newPhoto);
     });
     photoTemplate.remove();
-};
+  };
 
   cardElement.querySelector('.popup__avatar').src = source.author.avatar;
 
