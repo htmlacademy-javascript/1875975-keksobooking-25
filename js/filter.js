@@ -3,7 +3,6 @@ const DEFAULT_TYPE = 'any';
 const PriceRange = {
   LOW_PRICE: 10000,
   MIDDLE_PRICE: 50000,
-  // HIGH_PRICE: 100000,
 };
 
 const PriceTypes = {
@@ -40,8 +39,6 @@ const filterPrice = (ad) => {
 const filterFeatures = (ad) => {
   const currentFeatures = Array. from(featuresControl.querySelectorAll('.map__checkbox:checked'))
     .map((element) => element.value);
-  // const featuresChekedInput = featuresControl.querySelectorAll('.map__checkbox:checked');
-  // featuresChekedInput.forEach((element) => currentFeatures.push(element.value));
 
   if (ad.offer.features) {
     return currentFeatures.every((feature) => ad.offer.features.includes(feature));
