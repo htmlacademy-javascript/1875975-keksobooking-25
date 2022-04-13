@@ -37,14 +37,12 @@ const getSendMessages = (type) => {
     message.remove();
     document.removeEventListener('keydown', onDocumentEscKeydown);
     message.removeEventListener('click', onMessageClick);
-    // message.querySelector('.error__button').removeEventListener('click', onSubmitButtonClick);
   };
 
   function onDocumentEscKeydown(evt) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       removeMessage();
-      // onMessageClick();
     }
   }
 
@@ -52,16 +50,8 @@ const getSendMessages = (type) => {
     removeMessage();
   }
 
-  // function onSubmitButtonClick() {
-  //   removeMessage();
-  // }
-
   document.addEventListener('keydown', onDocumentEscKeydown);
   message.addEventListener('click', onMessageClick);
-
-  // if (type === ERROR) {
-  //   message.querySelector('.error__button').addEventListener('click', onSubmitButtonClick);
-  // }
 };
 
 export {showAlert, getSendMessages, SUCCESS, ERROR};
